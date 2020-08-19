@@ -4,6 +4,7 @@ job=$2
 jobname=${2%.sh}
 jobyaml="${jobname}.yaml"
 dir=$1
+jobuid=$((1000 + RANDOM % 4294967295))
 
 cd /workspace/dtp-jobs/$dir/$jobname
 
@@ -17,11 +18,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: ibmcom/aspera-cli
                 command: [ "/bin/bash", "-c", "--" ]
-                args: [ "chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: [ "chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -35,11 +38,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: mesosphere/aws-cli
                 command: ["/bin/sh"]
-                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -53,11 +58,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: google/cloud-sdk
                 command: [ "/bin/bash", "-c", "--" ]
-                args: [ "chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: [ "chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -71,11 +78,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: cbmckni/dtp-irods
                 command: [ "/bin/bash", "-c", "--" ]
-                args: [ "chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: [ "chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -89,11 +98,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: minio/mc
                 command: ["/bin/sh"]
-                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -107,11 +118,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: cbmckni/ndn-tools
                 command: [ "/bin/bash", "-c", "--" ]
-                args: [ "chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && '/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: [ "chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && '/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -125,11 +138,13 @@ case $1 in
         spec:
           template:
             spec:
+              securityContext:
+                fsGroup: ${jobuid}
               containers:
               - name: ${jobname}
                 image: ncbi/sra-tools
                 command: [ "/bin/sh" ]
-                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 777 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
+                args: ["-c", "apk update && apk upgrade && apk add bash && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname} && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job}" ]
               restartPolicy: Never
           backoffLimit: 4
         EOF
@@ -141,4 +156,4 @@ case $1 in
 esac
 
 kubectl create -f $jobyaml
-echo "Job ${jobname} submitted."
+echo "Job ${jobname} submitted. Job ID is ${jobuid}"
