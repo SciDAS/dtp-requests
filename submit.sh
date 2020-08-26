@@ -28,6 +28,20 @@ case $1 in
                 command: [ "/bin/bash", "-c", "--" ]
                 args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -50,6 +64,20 @@ case $1 in
                 command: ["/bin/sh"]
                 args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -72,6 +100,20 @@ case $1 in
                 command: [ "/bin/bash", "-c", "--" ]
                 args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -94,6 +136,20 @@ case $1 in
                 command: [ "/bin/bash", "-c", "--" ]
                 args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -116,6 +172,20 @@ case $1 in
                 command: ["/bin/sh"]
                 args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -138,6 +208,20 @@ case $1 in
                 command: [ "/bin/bash", "-c", "--" ]
                 args: [ "'/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;
@@ -160,6 +244,20 @@ case $1 in
                 command: [ "/bin/sh" ]
                 args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
               restartPolicy: Never
+              resources:
+                  requests:
+                    cpu: 1
+                    memory: 2Gi
+                  limits:
+                    cpu: 1
+                    memory: 2Gi
+                volumeMounts:
+                - name: vol-1
+                  mountPath: ${PVCNAME}
+              volumes:
+                - name: vol-1
+                  persistentVolumeClaim:
+                    claimName: ${PVCPATH}
           backoffLimit: 4
         EOF
         ;;

@@ -3,17 +3,49 @@ kind: CronJob
 metadata:
   name: dtp-requests-base
 spec:
-  schedule: "*/10 * * * *"
+  schedule: "*/1 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: dtp-requests-base
-            image: alpine/git
+            image: cbmckni/dtp-requests-base
             env:
             - name: BRANCH
               value: {{ .Values.Requests.Branch }}
+            env:
+            - name: PVCNAME
+              value: {{ template "pvcName" . }}
+            env:
+            - name: PVCPATH
+              value: {{ template "pvcPath" . }}
             command: [ "/bin/bash", "-c", "--" ]
-            args: [ "if [ ! -d /workspace/dtp-requests ]; then git clone https://github.com/cbmckni/dtp-requests.git /workspace/dtp-requests; else cd /workspace/dtp-requests && git pull origin ${BRANCH}; fi" ]
+            args: [ "echo 'starting'; if [ ! -d /workspace/dtp-requests ]; then git clone https://github.com/cbmckni/dtp-requests.git /workspace/dtp-requests; else cd /workspace/dtp-requests && git pull origin ${BRANCH}; fi; /workspace/dtp-requests/update.sh; echo 'done'; sleep 60" ]
+            resources:
+              requests:
+                cpu: {{ .Values.Resources.Requests.CPU }}
+                memory: {{ .Values.Resources.Requests.Memory }}
+              limits:
+                cpu: {{ .Values.Resources.Limits.CPU }}
+                memory: {{ .Values.Resources.Limits.Memory }}
+            volumeMounts:
+            - name: vol-1
+              mountPath: {{ template "pvcPath" . }}
           restartPolicy: OnFailure
+          volumes:
+            - name: vol-1
+              persistentVolumeClaim:
+                claimName: {{ template "pvcName" . }}
+
+
+# Variables
+
+{{- define "pvcPath" -}}
+{{- if .Values.NewPVC.Enabled }}{{ .Values.NewPVC.Path }}{{ else }}{{ .Values.ExistingPVC.Path }}{{ end }}
+{{- end -}}
+
+{{- define "pvcName" -}}
+{{- if .Values.NewPVC.Enabled }}{{ .Values.NewPVC.Name }}{{ else }}{{ .Values.ExistingPVC.Name }}{{ end }}
+{{- end -}}
+
