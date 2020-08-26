@@ -8,9 +8,10 @@ for dir in */ ; do
     cd /workspace/dtp-requests/$dir
     for job in *.sh ; do
         jobname=${job%.sh}
-        mkdir /workspace/dtp-jobs/$dir/$jobname || (echo "Job already submitted: ${job}" && continue)
+        jobuid=$((1000 + RANDOM % 4294967295))
+        (mkdir /workspace/dtp-jobs/$dir/$jobname && chown -R $jobuid:$jobuid /workspace/dtp-jobs/$dir/$jobname) || (echo "Job already submitted: ${job}" && continue)
         cp $job /workspace/dtp-jobs/$dir/$jobname
-        submit-job.sh $dir $job
+        submit-job.sh $dir $job $jobuid
     done
 done
-    
+echo "DTP Requests update complete! Exiting..."

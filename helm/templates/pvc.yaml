@@ -1,0 +1,18 @@
+{{ if .Values.NewPVC.Enabled }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.NewPVC.Name }}
+  labels:
+    app: {{ template "dtp.name" . }}
+    chart: {{ template "dtp.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: {{ .Values.NewPVC.StorageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.NewPVC.Size }}
+{{ end }}

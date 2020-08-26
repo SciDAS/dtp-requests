@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dtp-requests-base
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dtp-requests-base
+            image: alpine/git
+            env:
+            - name: BRANCH
+              value: {{ .Values.Requests.Branch }}
+            command: [ "/bin/bash", "-c", "--" ]
+            args: [ "if [ ! -d /workspace/dtp-requests ]; then git clone https://github.com/cbmckni/dtp-requests.git /workspace/dtp-requests; else cd /workspace/dtp-requests && git pull origin ${BRANCH}; fi" ]
+          restartPolicy: OnFailure

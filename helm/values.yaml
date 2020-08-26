@@ -1,0 +1,31 @@
+# Declare variables to be passed into your templates.
+
+# Enter the correct branch within https://github.com/cbmckni/dtp-requests
+Requests:
+  Branch: master
+
+# PVC
+
+ExistingPVC:
+  # If true, use existing PVC on local cluster.
+  Enabled: true
+  Name: scidas-dev
+  Path: /workspace
+
+NewPVC:
+  # If true, create new PVC on local cluster.
+  Enabled: false
+  Name: dtp-pvc-new
+  Size: 20Gi
+  StorageClass: nfs # Make sure storage class provisioner exists!
+  Path: /workspace
+
+# Resource request per container
+Resources:
+  Requests:
+    CPU: 1
+    Memory: 4Gi
+  Limits:
+    CPU: 1
+    Memory: 4Gi
+
