@@ -37,11 +37,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -73,11 +73,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -109,11 +109,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -145,11 +145,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -181,11 +181,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -217,11 +217,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
@@ -253,11 +253,11 @@ case $1 in
                     memory: 2Gi
                 volumeMounts:
                 - name: vol-1
-                  mountPath: ${PVCNAME}
+                  mountPath: ${PVCPATH}
               volumes:
                 - name: vol-1
                   persistentVolumeClaim:
-                    claimName: ${PVCPATH}
+                    claimName: ${PVCNAME}
           backoffLimit: 4
         EOF
         ;;
