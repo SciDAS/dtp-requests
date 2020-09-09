@@ -7,11 +7,15 @@ for dir in */ ; do
     mkdir -p /workspace/dtp-jobs/$dir
     cd /workspace/dtp-requests/$dir
     for job in *.sh ; do
-        jobname=${job%.sh}
+        jobname=${job%.sh#?}
         jobuid=$((1000 + RANDOM % 4294967295))
-        (mkdir /workspace/dtp-jobs/$dir/$jobname && chown -R $jobuid:$jobuid /workspace/dtp-jobs/$dir/$jobname) || (echo "Job already submitted: ${job}" && continue)
-        cp $job /workspace/dtp-jobs/$dir/$jobname
-        submit-job.sh $dir $job $jobuid
+        if (mkdir /workspace/dtp-jobs/$dir/$jobname && chown -R $jobuid:$jobuid /workspace/dtp-jobs/$dir/$jobname) ; then
+            echo "Submitting Job: ${job}"
+            cp $job /workspace/dtp-jobs/$dir/$jobname
+            submit-job.sh $dir $job $jobuid
+        else
+            echo "Job already submitted: ${job}"
+        fi
     done
 done
 echo "DTP Requests update complete! Exiting..."
