@@ -16,8 +16,7 @@ for dir in */ ; do
         if (mkdir /workspace/dtp-jobs/$dir/$jobname && chown -R $jobuid:$jobuid /workspace/dtp-jobs/$dir/$jobname) ; then
             echo "Submitting Job: ${job}"
             cp $job /workspace/dtp-jobs/$dir/$jobname
-            cd /workspace/dtp-jobs/$dir/$jobname
-            /workspace/dtp-requests/ $dir $job $jobuid
+            /workspace/dtp-requests/submit-job.sh $dir $job $jobuid
         else
             echo "Job already submitted: ${job}"
         fi
