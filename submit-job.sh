@@ -6,6 +6,9 @@ jobyaml="${jobname}.yaml"
 dir=$1
 jobuid=$3
 
+echo ${PVCPATH}
+echo ${PVCNAME}
+
 cd /workspace/dtp-jobs/$dir/$jobname
 
 case $1 in
