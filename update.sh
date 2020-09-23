@@ -4,6 +4,7 @@
 git clone https://github.com/cbmckni/dtp-requests.git /workspace
 cd /workspace/dtp-requests
 for dir in */ ; do
+    dir=${dir%/}
     mkdir -p /workspace/dtp-jobs/$dir
     cd /workspace/dtp-requests/$dir
     for job in *.sh ; do
