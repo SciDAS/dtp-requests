@@ -31,21 +31,21 @@ spec:
         image: ibmcom/aspera-cli
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -67,21 +67,21 @@ spec:
         image: mesosphere/aws-cli
         command: ["/bin/sh"]
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -103,21 +103,21 @@ spec:
         image: google/cloud-sdk
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -139,21 +139,21 @@ spec:
         image: cbmckni/dtp-irods
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -175,21 +175,21 @@ spec:
         image: minio/mc
         command: ["/bin/sh"]
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -211,21 +211,21 @@ spec:
         image: cbmckni/ndn-tools
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "'/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -247,21 +247,21 @@ spec:
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
       restartPolicy: Never
-      resources:
-        requests:
-          cpu: 1
-          memory: 2Gi
-        limits:
-          cpu: 1
-          memory: 2Gi
-      volumeMounts:
-      - name: vol-1
-        mountPath: ${PVCPATH}
-    volumes:
-      - name: vol-1
-        persistentVolumeClaim:
-          claimName: ${PVCNAME}
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;

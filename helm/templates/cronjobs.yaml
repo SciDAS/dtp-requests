@@ -13,6 +13,8 @@ spec:
           - name: dtp-requests-base
             image: cbmckni/dtp-requests-base
             env:
+            - name: ORG
+              value: scidas
             - name: BRANCH
               value: {{ .Values.Requests.Branch }}
             - name: PVCNAME
