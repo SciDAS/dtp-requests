@@ -15,10 +15,8 @@ spec:
             env:
             - name: BRANCH
               value: {{ .Values.Requests.Branch }}
-            env:
             - name: PVCNAME
               value: {{ template "pvcName" . }}
-            env:
             - name: PVCPATH
               value: {{ template "pvcPath" . }}
             command: [ "/bin/bash", "-c", "--" ]

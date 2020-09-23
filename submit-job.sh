@@ -6,6 +6,7 @@ jobyaml="${jobname}.yaml"
 dir=$1
 jobuid=$3
 
+echo ${BRANCH}
 echo ${PVCPATH}
 echo ${PVCNAME}
 
@@ -38,13 +39,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -74,13 +75,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -110,13 +111,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -146,13 +147,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -182,13 +183,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -218,13 +219,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
@@ -254,13 +255,13 @@ spec:
           limits:
             cpu: 1
             memory: 2Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
+      volumeMounts:
+      - name: vol-1
+        mountPath: ${PVCPATH}
+    volumes:
+      - name: vol-1
+        persistentVolumeClaim:
+          claimName: ${PVCNAME}
   backoffLimit: 4
 EOF
         ;;
