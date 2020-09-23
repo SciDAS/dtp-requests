@@ -18,7 +18,7 @@ case $1 in
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
@@ -54,7 +54,7 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
@@ -90,7 +90,7 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
@@ -126,7 +126,7 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
@@ -162,7 +162,7 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
@@ -198,7 +198,7 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${jobname}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
