@@ -33,12 +33,12 @@ spec:
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -69,12 +69,12 @@ spec:
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -105,12 +105,12 @@ spec:
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -141,12 +141,12 @@ spec:
         args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -177,12 +177,12 @@ spec:
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -213,12 +213,12 @@ spec:
         args: [ "'/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
@@ -249,12 +249,12 @@ spec:
         args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
       restartPolicy: Never
       resources:
-          requests:
-            cpu: 1
-            memory: 2Gi
-          limits:
-            cpu: 1
-            memory: 2Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
       volumeMounts:
       - name: vol-1
         mountPath: ${PVCPATH}
