@@ -22,10 +22,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: ibmcom/aspera-cli
@@ -58,10 +54,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: mesosphere/aws-cli
@@ -94,10 +86,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: google/cloud-sdk
@@ -130,10 +118,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: cbmckni/dtp-irods
@@ -166,10 +150,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: minio/mc
@@ -202,10 +182,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: cbmckni/ndn-tools
@@ -238,10 +214,6 @@ metadata:
 spec:
   template:
     spec:
-      securityContext:
-        runAsUser: ${jobuid}
-        runAsGroup: ${jobuid}
-        fsGroup: ${jobuid}
       containers:
       - name: ${jobname}
         image: ncbi/sra-tools
