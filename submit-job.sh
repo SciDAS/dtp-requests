@@ -26,7 +26,7 @@ spec:
       - name: ${jobname}
         image: ibmcom/aspera-cli
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -58,7 +58,7 @@ spec:
       - name: ${jobname}
         image: mesosphere/aws-cli
         command: ["/bin/sh"]
-        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -90,7 +90,7 @@ spec:
       - name: ${jobname}
         image: google/cloud-sdk
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -122,7 +122,7 @@ spec:
       - name: ${jobname}
         image: cbmckni/dtp-irods
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -154,7 +154,7 @@ spec:
       - name: ${jobname}
         image: minio/mc
         command: ["/bin/sh"]
-        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -186,7 +186,7 @@ spec:
       - name: ${jobname}
         image: cbmckni/ndn-tools
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "'/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: [ "'/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1
@@ -218,7 +218,7 @@ spec:
       - name: ${jobname}
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
-        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
+        args: ["-c", "apk update && apk upgrade && apk add bash && cd /workspace/dtp-jobs/${dir}/${jobname} && ${job} > ${job}.log 2>&1 && chmod -R 755 /workspace/dtp-jobs/${dir}/${jobname}" ]
         resources:
           requests:
             cpu: 1

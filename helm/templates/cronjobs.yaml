@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: dtp-requests-base
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       template:
@@ -22,7 +22,7 @@ spec:
             - name: PVCPATH
               value: {{ template "pvcPath" . }}
             command: [ "/bin/bash", "-c", "--" ]
-            args: [ "echo 'starting'; if [ ! -d /workspace/dtp-requests ]; then git clone https://github.com/cbmckni/dtp-requests.git /workspace/dtp-requests; else cd /workspace/dtp-requests && git fetch --all && git reset --hard origin ${BRANCH}; fi; cd /workspace/dtp-requests && ./update.sh; echo 'done'; sleep 60" ]
+            args: [ "echo 'starting'; if [ ! -d /workspace/dtp-requests ]; then git clone https://github.com/cbmckni/dtp-requests.git /workspace/dtp-requests; else cd /workspace/dtp-requests && git fetch --all && git reset --hard origin ${BRANCH}; fi; cd /workspace/dtp-requests && ./update.sh; echo 'done'" ]
             resources:
               requests:
                 cpu: {{ .Values.Resources.Requests.CPU }}

@@ -1,7 +1,9 @@
 #!/bin/bash
 
-echo "Testing..." 
+echo "Testing..."
 
 basename "$PWD"
 
 touch test.data
+
+sleep 60

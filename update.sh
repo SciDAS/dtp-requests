@@ -3,7 +3,7 @@
 
 git clone https://github.com/cbmckni/dtp-requests.git /workspace
 cd /workspace/dtp-requests
-for dir in */ ; do
+for dir in dtp-*/ ; do
     dir=${dir%/}
     mkdir -p /workspace/dtp-jobs/$dir
     cd /workspace/dtp-requests/$dir
