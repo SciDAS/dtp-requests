@@ -186,7 +186,7 @@ spec:
       - name: ${jobname}
         image: cbmckni/ndn-tools
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && '/usr/local/bin/nfd -c $CONFIG > $LOG_FILE 2>&1' && ${job}) > ${job}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
