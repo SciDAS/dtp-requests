@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-17039
+spec:
+  template:
+    spec:
+      containers:
+      - name: test
+        image: ibmcom/aspera-cli
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "cd /workspace/dtp-jobs/dtp-aspera/test && (echo test-17039 && test.sh) > test.log; sleep 60" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: /workspace
+      restartPolicy: Never
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: scidas-dev
+  backoffLimit: 4
