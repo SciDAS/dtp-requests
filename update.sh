@@ -14,10 +14,11 @@ for dir in dtp-*/ ; do
         echo $job
         echo $jobname
         echo $jobuid
-        if (mkdir /workspace/dtp-jobs/$dir/$jobname && chmod -R 777 /workspace/dtp-jobs) ; then
+        if (mkdir /workspace/dtp-jobs/$dir/$jobname) ; then
             echo "Submitting Job: ${job}"
             cp $job /workspace/dtp-jobs/$dir/$jobname
             /workspace/dtp-requests/submit-job.sh $dir $job $jobuid
+            chmod -R 777 /workspace/dtp-jobs
         else
             echo "Job already submitted: ${job}"
         fi

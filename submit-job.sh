@@ -26,7 +26,7 @@ spec:
       - name: ${jobname}
         image: ibmcom/aspera-cli
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ${job}) > ${jobname}.log" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ./${job}) > ${jobname}.log" ]
         resources:
           requests:
             cpu: 1
@@ -58,7 +58,7 @@ spec:
       - name: ${jobname}
         image: mesosphere/aws-cli
         command: ["/bin/sh"]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ${job}) > ${job}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -90,7 +90,7 @@ spec:
       - name: ${jobname}
         image: google/cloud-sdk
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ${job}) > ${job}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -122,7 +122,7 @@ spec:
       - name: ${jobname}
         image: cbmckni/dtp-irods
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ${job}) > ${job}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -154,7 +154,7 @@ spec:
       - name: ${jobname}
         image: minio/mc
         command: ["/bin/sh"]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ${job}) > ${job}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -186,7 +186,7 @@ spec:
       - name: ${jobname}
         image: cbmckni/ndn-tools
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ${job}) > ${job}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -218,7 +218,7 @@ spec:
       - name: ${jobname}
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ${job}) > ${job}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && (echo ${jobname}-${jobuid} && apk update && apk upgrade && apk add bash && ./${job}) > ${job}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
