@@ -9,7 +9,7 @@ Requests:
 ExistingPVC:
   # If true, use existing PVC on local cluster.
   Enabled: true
-  Name: scidas-dev
+  Name: stdnfs
   Path: /workspace
 
 NewPVC:
