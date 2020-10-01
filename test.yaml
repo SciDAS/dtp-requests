@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-22089
+spec:
+  template:
+    spec:
+      containers:
+      - name: test
+        image: ncbi/sra-tools
+        command: [ "/bin/sh" ]
+        args: ["-c", "cd /workspace/dtp-jobs/dtp-sra-tools/test && (echo test-22089 && apk update && apk upgrade && apk add bash && ./test.sh) > test.sh.log 2>&1" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: /workspace
+      restartPolicy: Never
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: scidas-dev
+  backoffLimit: 4

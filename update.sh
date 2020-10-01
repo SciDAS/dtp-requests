@@ -10,10 +10,6 @@ for dir in dtp-*/ ; do
     for job in *.sh ; do
         jobname=${job%.sh}
         jobuid=$((1000 + RANDOM % 4294967295))
-        echo $dir
-        echo $job
-        echo $jobname
-        echo $jobuid
         if (mkdir /workspace/dtp-jobs/$dir/$jobname) ; then
             echo "Submitting Job: ${job}"
             cp $job /workspace/dtp-jobs/$dir/$jobname
