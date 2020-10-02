@@ -6,6 +6,10 @@ jobyaml="${jobname}.yaml"
 dir=$1
 jobuid=$3
 
+echo ${BRANCH}
+echo ${PVCPATH}
+echo ${PVCNAME}
+
 cd /workspace/dtp-jobs/$dir/$jobname
 
 case $1 in
@@ -14,15 +18,15 @@ case $1 in
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-aspera-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-aspera-${jobname}-${jobuid}
+      - name: ${jobname}
         image: ibmcom/aspera-cli
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log" ]
         resources:
           requests:
             cpu: 1
@@ -46,15 +50,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-aws-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-aws-${jobname}-${jobuid}
+      - name: ${jobname}
         image: mesosphere/aws-cli
         command: ["/bin/sh"]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add bash && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add bash && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -78,15 +82,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-google-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-google-${jobname}-${jobuid}
+      - name: ${jobname}
         image: google/cloud-sdk
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -110,15 +114,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-irods-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-irods-${jobname}-${jobuid}
+      - name: ${jobname}
         image: cbmckni/dtp-irods
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -142,15 +146,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-minio-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-minio-${jobname}-${jobuid}
+      - name: ${jobname}
         image: minio/mc
         command: ["/bin/sh"]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add bash && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add bash && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -174,15 +178,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-ndn-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-ndn-${jobname}-${jobuid}
+      - name: ${jobname}
         image: cbmckni/ndn-tools
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: [ "cd /workspace/dtp-jobs/${dir}/${jobname} && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
@@ -206,48 +210,15 @@ EOF
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dtp-sra-tools-${jobname}-${jobuid}
+  name: ${jobname}-${jobuid}
 spec:
   template:
     spec:
       containers:
-      - name: dtp-sra-tools-${jobname}-${jobuid}
+      - name: ${jobname}
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add --no-cache util-linux bash && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
-        resources:
-          requests:
-            cpu: 1
-            memory: 4Gi
-          limits:
-            cpu: 1
-            memory: 4Gi
-        volumeMounts:
-        - name: vol-1
-          mountPath: ${PVCPATH}
-      restartPolicy: Never
-      volumes:
-        - name: vol-1
-          persistentVolumeClaim:
-            claimName: ${PVCNAME}
-  backoffLimit: 4
-EOF
-        ;;
-    dtp-globus)
-        source /workspace/dtp-jobs/${dir}/${jobname}/${job}
-        cat <<EOF > "$jobyaml"
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: dtp-globus-${jobname}-${jobuid}
-spec:
-  template:
-    spec:
-      containers:
-      - name: dtp-globus-${jobname}-${jobuid}
-        image: ndslabs/gcp-docker
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "/opt/globusconnectpersonal/start-globus-connect.sh ${GLOBUS_KEY} ${PVCPATH}/dtp-jobs && echo 'globus done'" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add --no-cache util-linux bash && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
         resources:
           requests:
             cpu: 1
