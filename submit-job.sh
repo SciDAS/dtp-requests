@@ -218,7 +218,7 @@ spec:
       - name: ${jobname}
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add --no-cache util-linux bash && (time (echo ${jobname}-${jobuid} && ./${job})) > ${jobname}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add --no-cache util-linux bash && time (echo ${jobname}-${jobuid} && ./${job} > ${jobname}.log 2>&1) > ${jobname}.time" ]
         resources:
           requests:
             cpu: 1
