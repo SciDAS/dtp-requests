@@ -1,5 +1,7 @@
 #!/bin/bash
 
+printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg
+
 cat <<EOF > SRA_IDs.txt
 SRR5139394
 SRR5139395
