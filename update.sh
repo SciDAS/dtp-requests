@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-git clone https://github.com/cbmckni/dtp-requests.git /workspace
 cd /workspace/dtp-requests
 for dir in dtp-*/ ; do
     dir=${dir%/}

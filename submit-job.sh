@@ -6,10 +6,6 @@ jobyaml="${jobname}.yaml"
 dir=$1
 jobuid=$3
 
-echo ${BRANCH}
-echo ${PVCPATH}
-echo ${PVCNAME}
-
 cd /workspace/dtp-jobs/$dir/$jobname
 
 case $1 in
@@ -218,7 +214,40 @@ spec:
       - name: ${jobname}
         image: ncbi/sra-tools
         command: [ "/bin/sh" ]
-        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add bash && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        args: ["-c", "cd /workspace/dtp-jobs/${dir}/${jobname} && apk update && apk upgrade && apk add --no-cache util-linux bash && echo ${jobname}-${jobuid} && (time ./${job}) >> ${jobname}.log 2>&1" ]
+        resources:
+          requests:
+            cpu: 1
+            memory: 4Gi
+          limits:
+            cpu: 1
+            memory: 4Gi
+        volumeMounts:
+        - name: vol-1
+          mountPath: ${PVCPATH}
+      restartPolicy: Never
+      volumes:
+        - name: vol-1
+          persistentVolumeClaim:
+            claimName: ${PVCNAME}
+  backoffLimit: 4
+EOF
+        ;;
+    dtp-globus)
+        source /workspace/dtp-jobs/${dir}/${jobname}/${job}
+        cat <<EOF > "$jobyaml"
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${jobname}-${jobuid}
+spec:
+  template:
+    spec:
+      containers:
+      - name: ${jobname}
+        image: ndslabs/gcp-docker
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "/opt/globusconnectpersonal/start-globus-connect.sh ${GLOBUS_KEY} ${PVCPATH}/dtp-data && echo 'globus done'" ]
         resources:
           requests:
             cpu: 1
