@@ -58,6 +58,25 @@ If you are also an admin, you can go ahead and merge the new script in. If not, 
 
 Within 15 minutes of approval, a container with the correct protocol will be deployed to execute your script in the defined directory on the PVC. 
 
+### Creating a Globus Connect Personal Endpoint (optional)
+
+A [Globus Connect Personal](https://www.globus.org/globus-connect-personal) endpoint on a cluster gives users the ability to transfer, view, and delete files from the online GUI. 
+
+To submit a Globus job to DTP-Requests, first install the [Globus CLI](https://docs.globus.org/cli/). 
+
+To generate a new endpoint with an associated setup key, run:
+
+`globus endpoint create --personal $ENDPOINT_NAME`
+
+Copy the setup key, then modify and rename [endpoint.sh.example](https://github.com/SciDAS/dtp-requests/blob/master/dtp-globus/endpoint.sh.example) to describe your new endpoint.
+
+Make sure the new file contains the correct setup key and ends with `.sh`.
+
+Finally, submit the file as you normally would by forking the repo(if necessary) and issuing a pull request to the branch/fork your cluster is using.
+
+Within 15 minutes of approval, a container with Globus COnnect Personal will be deployed to set up your endpoint in the defined directory on the PVC. 
+
+
 ## Installation
 
 First, install dependencies:
