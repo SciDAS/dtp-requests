@@ -4,7 +4,7 @@
 
 A Data Transfer Pod is a configurable collection of containers, each representing a different data transfer protocol/interface. 
 
-All containers are mounted to the same Persisten Volume Claim(PVC), so users can easily move data to/from Kubernetes clusters and multiple endpoints with a single deployment.
+All containers are mounted to the same Persistent Volume Claim(PVC), so users can easily move data to/from Kubernetes clusters and multiple endpoints with a single deployment.
 
 DTP-Requests is an automated system that continually checks for data transfer jobs and deploys them in the appropriate container. 
 
